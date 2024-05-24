@@ -1,0 +1,33 @@
+# House Price Prediction Challenge
+Welcome to the House Price Prediction Challenge, you will test your regression skills by designing an algorithm to accurately predict the house prices in India. Accurately predicting house prices can be a daunting task. The buyers are just not concerned about the size(square feet) of the house and there are various other factors that play a key role to decide the price of a house/property. It can be extremely difficult to figure out the right set of attributes that are contributing to understanding the buyer's behavior as such. This dataset has been collected across various property aggregators across India. In this competition, provided the 12 influencing factors your role as a data scientist is to predict the prices as accurately as possible.
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.tree import DecisionTreeRegressor,ExtraTreeRegressor
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+
+import warnings
+warnings.filterwarnings("ignore")
+df=pd.read_csv("/kaggle/input/house-price-prediction-challenge/test.csv")
+df.head()
+df.describe()
+df.shape
+df.columns
+df.dtypes
+df.isnull()
+df.head()
+df.sum()
+df.isnull().sum()
+plt.figure(figsize=(12,6))
+sns.heatmap(df.isna(),yticklabels=False)
+plt.tight_layout()
+numerical_columns = df.select_dtypes(include=['number'])
+
+numerical_columns.columns
+print(df["BHK_OR_RK"].value_counts())
+plt.bar(["BHK","RK"],df["BHK_OR_RK"].value_counts())
+df['CITY'] = df['ADDRESS'].str.split(',').str.get(1)
+df['CITY'].value_counts()
